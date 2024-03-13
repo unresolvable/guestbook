@@ -1,3 +1,3 @@
-<h2>Reference URL</h2>
+<h3>Reference URL</h3>
 
 `https://kubernetes.io/docs/tutorials/stateless-application/guestbook/`
