@@ -1,19 +1,22 @@
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: guestbook-ingress
   annotations:
-    kubernetes.io/ingress.class: nginx
     cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
+  ingressClassName: nginx
   tls:
   - hosts:
-    - guestbook.unresolvable.org 
-    secretName: letsencrypt-guestbook
+    - guestbook.k3s.org 
+    secretName: letsencrypt-prod-guestbook
   rules:
-  - host: guestbook.unresolvable.org
+  - host: guestbook.k3s.org
     http:
       paths:
       - backend:
-          serviceName: frontend
-          servicePort: 80
+          service:
+            name: frontend
+            port: 
+              number: 80
+        pathType: ImplementationSpecific
