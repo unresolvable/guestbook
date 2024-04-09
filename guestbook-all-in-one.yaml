@@ -3,7 +3,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: redis-leader
-  #namespace: guestbook
+  namespace: guestbook
   labels:
     app: redis
     role: leader
@@ -37,7 +37,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: redis-leader
-  #namespace: guestbook
+  namespace: guestbook
   labels:
     app: redis
     role: leader
@@ -58,7 +58,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: redis-follower
-  #namespace: guestbook
+  namespace: guestbook
   labels:
     app: redis
     role: follower
@@ -92,7 +92,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: redis-follower
-  #namespace: guestbook
+  namespace: guestbook
   labels:
     app: redis
     role: follower
@@ -113,7 +113,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: frontend
-  #namespace: guestbook
+  namespace: guestbook
 spec:
   replicas: 3
   selector:
@@ -147,7 +147,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: frontend
-  #namespace: guestbook
+  namespace: guestbook
   labels:
     app: guestbook
     tier: frontend
