@@ -2,4 +2,4 @@
 
 https://kubernetes.io/docs/tutorials/stateless-application/guestbook/
 
-Sample Appliaction to learn ARGOCD 
+Sample Appliaction to learn ARGOCD deployments
