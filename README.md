@@ -2,4 +2,4 @@
 
 https://kubernetes.io/docs/tutorials/stateless-application/guestbook/
 
-Cleaned Up Directory Structure for ARGOCD Integrations
+Sample Appliaction to learn ARGOCD 
