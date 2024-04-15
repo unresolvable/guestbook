@@ -16,7 +16,7 @@ spec:
     app: redis
     role: leader
     tier: backend
-
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -34,7 +34,7 @@ spec:
     app: redis
     role: follower
     tier: backend
-
+---
 apiVersion: v1
 kind: Service
 metadata:
@@ -54,7 +54,7 @@ spec:
   selector:
     app: guestbook
     tier: frontend
-
+---
 apiVersion: v1
 kind: Service
 metadata:
