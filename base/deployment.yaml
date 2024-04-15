@@ -1,11 +1,4 @@
-# SOURCE: https://cloud.google.com/kubernetes-engine/docs/tutorials/guestbook
-apiVersion: v1
-kind: Namespace
-metadata:
-  name: guestbook
-
----
-
+# base/deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -37,30 +30,6 @@ spec:
         ports:
         - containerPort: 6379
 
----
-
-# SOURCE: https://cloud.google.com/kubernetes-engine/docs/tutorials/guestbook
-apiVersion: v1
-kind: Service
-metadata:
-  name: redis-leader
-  namespace: guestbook
-  labels:
-    app: redis
-    role: leader
-    tier: backend
-spec:
-  ports:
-  - port: 6379
-    targetPort: 6379
-  selector:
-    app: redis
-    role: leader
-    tier: backend
-
----
-
-# SOURCE: https://cloud.google.com/kubernetes-engine/docs/tutorials/guestbook
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -92,30 +61,6 @@ spec:
         ports:
         - containerPort: 6379
 
----
-
-# SOURCE: https://cloud.google.com/kubernetes-engine/docs/tutorials/guestbook
-apiVersion: v1
-kind: Service
-metadata:
-  name: redis-follower
-  namespace: guestbook
-  labels:
-    app: redis
-    role: follower
-    tier: backend
-spec:
-  ports:
-    # the port that this service should serve on
-  - port: 6379
-  selector:
-    app: redis
-    role: follower
-    tier: backend
-
----
-
-# SOURCE: https://cloud.google.com/kubernetes-engine/docs/tutorials/guestbook
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -145,50 +90,6 @@ spec:
             memory: 100Mi
         ports:
         - containerPort: 80
-
----
-
-# SOURCE: https://cloud.google.com/kubernetes-engine/docs/tutorials/guestbook
-apiVersion: v1
-kind: Service
-metadata:
-  name: frontend
-  namespace: guestbook
-  labels:
-    app: guestbook
-    tier: frontend
-spec:
-  # if your cluster supports it, uncomment the following to automatically create
-  # an external load-balanced IP for the frontend service.
-  # type: LoadBalancer
-  #type: LoadBalancer
-  ports:
-    # the port that this service should serve on
-  - port: 80
-  selector:
-    app: guestbook
-    tier: frontend
-
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: redis-slave
-  namespace: guestbook
-  labels:
-    app: redis
-    role: slave
-    tier: backend
-spec:
-  ports:
-  - port: 6379
-  selector:
-    app: redis
-    role: slave
-    tier: backend
-
----
 
 apiVersion: apps/v1 #  for k8s versions before 1.9.0 use apps/v1beta2  and before 1.8.0 use extensions/v1beta1
 kind: Deployment
@@ -226,4 +127,3 @@ spec:
           #value: env
         ports:
         - containerPort: 6379
-

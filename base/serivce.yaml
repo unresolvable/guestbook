@@ -1,0 +1,73 @@
+# base/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-leader
+  namespace: guestbook
+  labels:
+    app: redis
+    role: leader
+    tier: backend
+spec:
+  ports:
+  - port: 6379
+    targetPort: 6379
+  selector:
+    app: redis
+    role: leader
+    tier: backend
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-follower
+  namespace: guestbook
+  labels:
+    app: redis
+    role: follower
+    tier: backend
+spec:
+  ports:
+    # the port that this service should serve on
+  - port: 6379
+  selector:
+    app: redis
+    role: follower
+    tier: backend
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+  namespace: guestbook
+  labels:
+    app: guestbook
+    tier: frontend
+spec:
+  # if your cluster supports it, uncomment the following to automatically create
+  # an external load-balanced IP for the frontend service.
+  # type: LoadBalancer
+  #type: LoadBalancer
+  ports:
+    # the port that this service should serve on
+  - port: 80
+  selector:
+    app: guestbook
+    tier: frontend
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-slave
+  namespace: guestbook
+  labels:
+    app: redis
+    role: slave
+    tier: backend
+spec:
+  ports:
+  - port: 6379
+  selector:
+    app: redis
+    role: slave
+    tier: backend

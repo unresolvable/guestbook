@@ -1,0 +1,4 @@
+# overlays/dev/kustomization.yaml
+bases:
+- ../../base
+- ingress.yaml

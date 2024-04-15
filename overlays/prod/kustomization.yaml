@@ -1,0 +1,11 @@
+# overlays/prod/kustomization.yaml
+resources:
+- ../../base
+- ingress.yaml
+- ingress-local.yaml
+
+#patchesStrategicMerge:
+#- deployment.yaml
+
+#patches:
+#  - path: deployment.yaml
