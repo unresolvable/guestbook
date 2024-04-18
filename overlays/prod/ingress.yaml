@@ -6,6 +6,9 @@ metadata:
   #namespace: guestbook
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
+    external-dns.alpha.kubernetes.io/ingress-hostname-source: annotation-only
+    external-dns.alpha.kubernetes.io/hostname: guestbook.k3s.org
+    external-dns.alpha.kubernetes.io/target: ingress.k3s.org
 spec:
   ingressClassName: nginx
   tls:
